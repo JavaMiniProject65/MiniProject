@@ -6,6 +6,7 @@ public class MainClass {
 		System.out.println("유재현");
 		System.out.println("배수연");
 		System.out.println("김민석");
+		System.out.println("박성진");
 	}
 
 }

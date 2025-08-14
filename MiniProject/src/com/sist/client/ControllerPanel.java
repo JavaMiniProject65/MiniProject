@@ -23,5 +23,6 @@ public class ControllerPanel extends JPanel {
 		add("CIF",cif);
 		
 		
+		
 	}
 }

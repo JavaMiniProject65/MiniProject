@@ -21,5 +21,6 @@ public class ControllerPanel extends JPanel {
 		add("LF",lf);
 		add("SF",sf);
 		add("CIF",cif);
+		
 	}
 }

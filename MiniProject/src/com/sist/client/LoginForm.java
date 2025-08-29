@@ -33,7 +33,4 @@ public class LoginForm extends JFrame {
 		setSize(400, 250);
 		setVisible(true);       
 	}
-	public static void main(String[] args) {
-		new LoginForm();
-	}
 }

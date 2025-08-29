@@ -24,6 +24,7 @@ public class LoginForm extends JFrame {
 		pf.setBounds(125, 110, 150, 30);
 		add(la2);add(pf);
 		la3.setBounds(160, 30, 60, 30);
+		//
 		add(la3);
 		
 		JPanel p=new JPanel();

@@ -6,9 +6,9 @@ import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 
 public class ChatForm extends JPanel {
-	JButton b1, b2;
-	JTextPane pane, pane_1;
-	JTextField tf;
+	JButton sendBtn, infoBtn;		// 채팅 전송, 정보보기 버튼
+	JTextPane chatDisplayPane, userListPane;			// 채팅 보여주는 화면, 사용자 목록 화면
+	JTextField chatTextField;		// 채팅 입력 텍스트 필드
 
 	DefaultTableModel model1, model2;
 	JScrollBar bar;
@@ -37,37 +37,37 @@ public class ChatForm extends JPanel {
 
 		setLayout(null);
 
-		pane = new JTextPane();
-		pane_1 = new JTextPane();
-		JScrollPane js3 = new JScrollPane(pane);
-		JScrollPane js4 = new JScrollPane(pane_1);
+		chatDisplayPane = new JTextPane();
+		userListPane = new JTextPane();
+		JScrollPane chatScrollPane = new JScrollPane(chatDisplayPane);
+		JScrollPane listScrollPane = new JScrollPane(userListPane);
 		
-		bar = js3.getVerticalScrollBar();
-		js3.setBounds(900, 15, 600, 650); 
-		js4.setBounds(15, 15, 850, 400); 
+		bar = chatScrollPane.getVerticalScrollBar();
+		chatScrollPane.setBounds(900, 15, 600, 650); 
+		listScrollPane.setBounds(15, 15, 850, 400); 
 		
-		add(js3);
-		add(js4);
-		pane.setEditable(false);
-		pane_1.setEditable(false);
+		add(chatScrollPane);
+		add(listScrollPane);
+		chatDisplayPane.setEditable(false);
+		userListPane.setEditable(false);
 
-		tf = new JTextField();
-		tf.setBounds(15, 420, 850, 30);
-		add(tf);
+		chatTextField = new JTextField();
+		chatTextField.setBounds(15, 420, 850, 30);
+		add(chatTextField);
 
-		b1 = new JButton("쪽지 보내기");
-		b2 = new JButton("정보보기");
+		sendBtn = new JButton("쪽지 보내기");
+		infoBtn = new JButton("정보보기");
 		
-		JPanel p = new JPanel();
-		p.setLayout(null); 
-		p.add(b1);
-		p.add(b2);
+		JPanel panel = new JPanel();
+		panel.setLayout(null); 
+		panel.add(sendBtn);
+		panel.add(infoBtn);
 		
-		b1.setBounds(5, 5, 100, 30); // x, y, 가로, 세로
-		b2.setBounds(110, 5, 100, 30);
+		sendBtn.setBounds(5, 5, 100, 30); // x, y, 가로, 세로
+		infoBtn.setBounds(110, 5, 100, 30);
 
-		p.setBounds(900, 670, 600, 50); // 위치와 크기 재설정
-		add(p);
+		panel.setBounds(900, 670, 600, 50); // 위치와 크기 재설정
+		add(panel);
 	}
 	public static void main(String[] args) {
 		JFrame frame = new JFrame("채팅");

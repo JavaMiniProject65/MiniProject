@@ -6,6 +6,7 @@ public class ClientMainFrame extends JFrame implements ActionListener {
 	
 	MenuForm menu=new MenuForm();
 	ControllerPanel cp=new ControllerPanel();
+
 	// has-a => 포함 클래스
 	public ClientMainFrame() {
 		setLayout(null);
@@ -29,7 +30,7 @@ public class ClientMainFrame extends JFrame implements ActionListener {
 		try {
 			UIManager.setLookAndFeel("com.jtattoo.plaf.mcwin.McWinLookAndFeel");
 		} catch(Exception e) {}
-		new ClientMainFrame(); // 생성자 호출
+		new LoginForm(); 
 		// ClientMainFrame c=new ClientMainFrame();
 	}
 	@Override
@@ -38,20 +39,17 @@ public class ClientMainFrame extends JFrame implements ActionListener {
 		if(e.getSource()==menu.b1) {
 			cp.card.show(cp, "HF");
 		}
-		if(e.getSource()==menu.b2) {
-			cp.card.show(cp, "CF");
-			}
 		if(e.getSource()==menu.b3) {
-			cp.card.show(cp, "BF");
-		}
+			cp.card.show(cp, "SF");
+			}
 		if(e.getSource()==menu.b4) {
 			cp.card.show(cp, "RF");
 		}
 		if(e.getSource()==menu.b5) {
-			cp.card.show(cp, "LF");
+			cp.card.show(cp, "CF");
 		}
 		if(e.getSource()==menu.b6) {
-			cp.card.show(cp, "SF");
+			cp.card.show(cp, "BF");
 		}
 		if(e.getSource()==menu.b7) {
 			cp.card.show(cp, "CIF");

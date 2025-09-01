@@ -1,7 +1,9 @@
 package com.sist.client;
 import javax.swing.*;
 import java.awt.*;
-public class LoginForm extends JFrame {
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+public class LoginForm extends JFrame implements ActionListener{
 	JLabel la1,la2,la3;
 	JTextField tf;
 	JPasswordField pf;
@@ -33,5 +35,22 @@ public class LoginForm extends JFrame {
 		add(p);
 		setSize(400, 250);
 		setVisible(true);       
+		
+		b1.addActionListener(this);
+		b2.addActionListener(this);
+	}
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		// TODO Auto-generated method stub
+		if (e.getSource()==b1) {
+			dispose();
+			new ClientMainFrame();
+			
+			
+		}
+		if (e.getSource()==b2) {
+			dispose();
+			System.exit(0);
+		}
 	}
 }

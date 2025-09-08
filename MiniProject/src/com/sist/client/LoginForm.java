@@ -33,7 +33,7 @@ public class LoginForm extends JFrame{
 		
 		JPanel p=new JPanel();
     	p.add(b1);p.add(b2);p.add(b3);
-    	p.setBounds(150, 200, 285, 35);
+    	p.setBounds(55, 150, 285, 35);
 		
 		add(p);
 		setSize(400, 250);

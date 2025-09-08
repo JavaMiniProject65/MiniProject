@@ -3,7 +3,7 @@ import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
 public class JoinForm extends JFrame{
-	JLabel[] las=new JLabel[9];
+	JLabel[] las=new JLabel[8];
 	String[] title= {"ID","비밀번호","이름","성별","우편번호","주소","상세주소","전화"};
 	JTextField tf1,tf2,tf3,tf4,tf5,tf6;
 	JPasswordField pf;
@@ -65,7 +65,7 @@ public class JoinForm extends JFrame{
 		JPanel p=new JPanel();
 		p.add(b1);p.add(b2);
 		
-		p.setBounds(10, 370, 370, 35);
+		p.setBounds(10, 310, 370, 35);
 		add(p);
 		
 		tf1.setEnabled(false);
@@ -73,7 +73,10 @@ public class JoinForm extends JFrame{
 		tf4.setEnabled(false);
 		rb1.setSelected(true);
 				
-		setSize(450, 450);
+		setSize(450, 385);
 		//setVisible(true);
+	}
+	public static void main(String[] args) {
+		new JoinForm();
 	}
 }

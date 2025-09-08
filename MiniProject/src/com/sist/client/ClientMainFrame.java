@@ -17,7 +17,7 @@ public class ClientMainFrame extends JFrame implements ActionListener {
 		add(menu);
 		add(cp);
 		setSize(1620, 960);
-		setVisible(true);
+		//setVisible(true);
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		menu.b1.addActionListener(this);
 		menu.b2.addActionListener(this);
@@ -39,7 +39,7 @@ public class ClientMainFrame extends JFrame implements ActionListener {
 		try {
 			UIManager.setLookAndFeel("com.jtattoo.plaf.mcwin.McWinLookAndFeel");
 		} catch(Exception e) {}
-		new LoginForm(); 
+		new ClientMainFrame();
 		// ClientMainFrame c=new ClientMainFrame();
 	}
 	@Override
@@ -48,19 +48,19 @@ public class ClientMainFrame extends JFrame implements ActionListener {
 		if(e.getSource()==menu.b1) {
 			cp.card.show(cp, "HF");
 		}
-		if(e.getSource()==menu.b3) {
+		else if(e.getSource()==menu.b3) {
 			cp.card.show(cp, "SF");
 			}
-		if(e.getSource()==menu.b4) {
+		else if(e.getSource()==menu.b4) {
 			cp.card.show(cp, "RF");
 		}
-		if(e.getSource()==menu.b5) {
+		else if(e.getSource()==menu.b5) {
 			cp.card.show(cp, "CF");
 		}
-		if(e.getSource()==menu.b6) {
+		else if(e.getSource()==menu.b6) {
 			cp.card.show(cp, "BF");
 		}
-		if(e.getSource()==menu.b7) {
+		else if(e.getSource()==menu.b7) {
 			cp.card.show(cp, "CIF");
 		}
 		else if(e.getSource()==login.b2)

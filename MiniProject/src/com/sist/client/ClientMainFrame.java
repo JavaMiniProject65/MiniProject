@@ -6,6 +6,8 @@ public class ClientMainFrame extends JFrame implements ActionListener {
 	
 	MenuForm menu=new MenuForm();
 	ControllerPanel cp=new ControllerPanel();
+	LoginForm login=new LoginForm();
+	JoinForm join=new JoinForm();
 
 	// has-a => 포함 클래스
 	public ClientMainFrame() {
@@ -24,6 +26,13 @@ public class ClientMainFrame extends JFrame implements ActionListener {
 		menu.b5.addActionListener(this);
 		menu.b6.addActionListener(this);
 		menu.b7.addActionListener(this);
+		
+		login.b1.addActionListener(this); // 로그인
+    	login.b2.addActionListener(this); // 회원가입
+    	login.b3.addActionListener(this); // 취소
+    	
+    	join.b1.addActionListener(this); // 회원가입
+    	join.b2.addActionListener(this); // 취소
 	}
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
@@ -53,6 +62,25 @@ public class ClientMainFrame extends JFrame implements ActionListener {
 		}
 		if(e.getSource()==menu.b7) {
 			cp.card.show(cp, "CIF");
+		}
+		else if(e.getSource()==login.b2)
+		{
+			login.setVisible(false);
+			join.setVisible(true);
+		}
+		else if(e.getSource()==login.b3) // 취소버튼
+		{
+			dispose();
+			System.exit(0);
+		}
+		else if(e.getSource()==join.b1)
+		{
+			
+		}
+		else if(e.getSource()==join.b2)
+		{
+			login.setVisible(true);
+			join.setVisible(false);
 		}
 	}
 

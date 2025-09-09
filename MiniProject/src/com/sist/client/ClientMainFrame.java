@@ -57,7 +57,7 @@ public class ClientMainFrame extends JFrame implements ActionListener {
 			cp.card.show(cp, "CF");
 		}
 		if(e.getSource()==menu.b5) {
-			cp.card.show(cp, "BF");
+			cp.card.show(cp, "list");
 		}
 		if(e.getSource()==menu.b6) {
 			cp.card.show(cp, "CIF");

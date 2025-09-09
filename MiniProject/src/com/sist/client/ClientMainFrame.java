@@ -25,7 +25,6 @@ public class ClientMainFrame extends JFrame implements ActionListener {
 		menu.b4.addActionListener(this);
 		menu.b5.addActionListener(this);
 		menu.b6.addActionListener(this);
-		menu.b7.addActionListener(this);
 		
 		login.b1.addActionListener(this); // 로그인
     	login.b2.addActionListener(this); // 회원가입
@@ -39,7 +38,7 @@ public class ClientMainFrame extends JFrame implements ActionListener {
 		try {
 			UIManager.setLookAndFeel("com.jtattoo.plaf.mcwin.McWinLookAndFeel");
 		} catch(Exception e) {}
-		new ClientMainFrame();
+		new ClientMainFrame(); 
 		// ClientMainFrame c=new ClientMainFrame();
 	}
 	@Override
@@ -48,36 +47,41 @@ public class ClientMainFrame extends JFrame implements ActionListener {
 		if(e.getSource()==menu.b1) {
 			cp.card.show(cp, "HF");
 		}
-		else if(e.getSource()==menu.b3) {
+		if(e.getSource()==menu.b2) {
 			cp.card.show(cp, "SF");
 			}
-		else if(e.getSource()==menu.b4) {
+		if(e.getSource()==menu.b3) {
 			cp.card.show(cp, "RF");
 		}
-		else if(e.getSource()==menu.b5) {
+		if(e.getSource()==menu.b4) {
 			cp.card.show(cp, "CF");
 		}
-		else if(e.getSource()==menu.b6) {
+		if(e.getSource()==menu.b5) {
 			cp.card.show(cp, "BF");
 		}
-		else if(e.getSource()==menu.b7) {
+		if(e.getSource()==menu.b6) {
 			cp.card.show(cp, "CIF");
 		}
-		else if(e.getSource()==login.b2)
+		if(e.getSource()==login.b1) // 취소버튼
+		{
+			setVisible(true);
+		}
+		if(e.getSource()==login.b2)
 		{
 			login.setVisible(false);
 			join.setVisible(true);
 		}
-		else if(e.getSource()==login.b3) // 취소버튼
+		
+		if(e.getSource()==login.b3) // 취소버튼
 		{
 			dispose();
 			System.exit(0);
 		}
-		else if(e.getSource()==join.b1)
+		if(e.getSource()==join.b1)
 		{
 			
 		}
-		else if(e.getSource()==join.b2)
+		if(e.getSource()==join.b2)
 		{
 			login.setVisible(true);
 			join.setVisible(false);

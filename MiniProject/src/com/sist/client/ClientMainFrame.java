@@ -62,11 +62,11 @@ public class ClientMainFrame extends JFrame implements ActionListener {
 		if(e.getSource()==menu.b6) {
 			cp.card.show(cp, "CIF");
 		}
-		if(e.getSource()==login.b1) // 취소버튼
+		if(e.getSource()==login.b1) // 로그인 버튼
 		{
 			setVisible(true);
 		}
-		if(e.getSource()==login.b2)
+		if(e.getSource()==login.b2) // 회원가입 버튼
 		{
 			login.setVisible(false);
 			join.setVisible(true);
@@ -85,6 +85,7 @@ public class ClientMainFrame extends JFrame implements ActionListener {
 		{
 			login.setVisible(true);
 			join.setVisible(false);
+			
 		}
 	}
 

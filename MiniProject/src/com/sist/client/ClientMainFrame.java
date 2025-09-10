@@ -64,6 +64,7 @@ public class ClientMainFrame extends JFrame implements ActionListener {
 		if(e.getSource()==login.b1) // 로그인 버튼
 		{
 			setVisible(true);
+			login.setVisible(false);
 		}
 		if(e.getSource()==login.b2) // 회원가입 버튼
 		{

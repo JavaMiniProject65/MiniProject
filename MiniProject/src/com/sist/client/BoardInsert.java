@@ -132,4 +132,12 @@ public class BoardInsert extends JPanel implements ActionListener{
 			boardListForm.card.show(boardListForm,"list");
 		}
 	}
+	
+	public void resetForm() 
+	{
+	    nameTextField.setText("");
+	    titleTextField.setText("");
+	    contentTextArea.setText("");
+	    pwdTextField.setText("");
+	}
 }

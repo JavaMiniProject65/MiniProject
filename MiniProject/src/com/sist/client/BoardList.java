@@ -17,6 +17,8 @@ public class BoardList extends JPanel implements ActionListener{
     // 현재페이지 / 총페이지 
     int curpage=1;
     int totalpage=0;
+    
+    BoardInsert insertPage;
     public BoardList(ControllerPanel bm)
     {
     	this.bm=bm;
@@ -86,13 +88,16 @@ public class BoardList extends JPanel implements ActionListener{
     	setLayout(null);
     	titleLabel.setBounds(10, 15, 1530, 60);
     	add(titleLabel);
+    	
     	writeBtn.setBounds(1350, 90, 150, 40);
     	add(writeBtn);
+    	
     	tableScrollPanel.setBounds(30, 150, 1490, 570);	
     	add(tableScrollPanel);
+    	
     	JPanel btnPanel=new JPanel();
     	btnPanel.add(previousBtn);btnPanel.add(pagesCountLabel);btnPanel.add(nextBtn);
-    	btnPanel.setBounds(30, 710, 1490, 45);
+    	btnPanel.setBounds(30, 740, 1490, 30);
     	add(btnPanel);
     	print();
     	
@@ -151,8 +156,9 @@ public class BoardList extends JPanel implements ActionListener{
 		}
 		else if(e.getSource()==writeBtn)
 		{
-			bm.card.show(bm, "insert");			
-			
+			bm.card.show(bm, "insert");	
+			bm.bi.resetForm();
+		
 		}
 	}
     

@@ -6,97 +6,111 @@ import javax.swing.*;
 import com.sist.dao.BoardDAO;
 import com.sist.vo.BoardVO;
 public class BoardInsert extends JPanel implements ActionListener{
-	JLabel la1,la2,la3,la4,la5;
-	JTextField tf1,tf2;
-	JTextArea ta;
-	JPasswordField pf;
-	JButton b1,b2;
-	private ControllerPanel bm;
+	JLabel mainTitleLabel, nameLabel,titleTextLabel,contentLabel,pwdLabel;
+	JTextField nameTextField, titleTextField;
+	JTextArea contentTextArea;
+	JPasswordField pwdTextField;
+	JButton writingBtn,cancelBtn;
+	private ControllerPanel boardListForm;
 	
-	public BoardInsert(ControllerPanel bm)
+	public BoardInsert(ControllerPanel boardListForm)
 	{
-		this.bm=bm;
-		la1=new JLabel("글쓰기",JLabel.CENTER);
-    	la1.setFont(new Font("맑은 고딕",Font.BOLD,40));
+		this.boardListForm=boardListForm;
+		mainTitleLabel=new JLabel("글쓰기",JLabel.CENTER);
+		mainTitleLabel.setFont(new Font("맑은 고딕",Font.BOLD,50));
     	
-    	la2=new JLabel("이름",JLabel.CENTER);
-    	la3=new JLabel("제목",JLabel.CENTER);
-    	la4=new JLabel("내용",JLabel.CENTER);
-    	la5=new JLabel("비밀번호",JLabel.CENTER);
+		nameLabel=new JLabel("이름",JLabel.CENTER);
+		nameLabel.setFont(new Font("맑은 고딕",Font.PLAIN,20));
     	
-    	tf1=new JTextField();
-    	tf2=new JTextField();
-    	pf=new JPasswordField();
+		titleTextLabel=new JLabel("제목",JLabel.CENTER);
+		titleTextLabel.setFont(new Font("맑은 고딕",Font.PLAIN,20));
     	
-    	ta=new JTextArea();
-    	JScrollPane js=new JScrollPane(ta);
+    	contentLabel=new JLabel("내용",JLabel.CENTER);
+    	contentLabel.setFont(new Font("맑은 고딕",Font.PLAIN,20));
     	
-    	b1=new JButton("글쓰기");
-    	b2=new JButton("취소");
+    	pwdLabel=new JLabel("비밀번호",JLabel.CENTER);
+    	pwdLabel.setFont(new Font("맑은 고딕",Font.PLAIN,20));
+    	
+    	nameTextField=new JTextField();
+    	titleTextField=new JTextField();
+    	pwdTextField=new JPasswordField();
+    	
+    	contentTextArea=new JTextArea();
+    	JScrollPane contentScrollPanel=new JScrollPane(contentTextArea);
+    	
+    	writingBtn=new JButton("글쓰기");
+    	cancelBtn=new JButton("취소");
     	
     	setLayout(null);
-    	la1.setBounds(10, 15, 610, 50);
-    	add(la1);
     	
-    	la2.setBounds(30, 75, 80, 30);
-    	tf1.setBounds(115, 75, 100, 30);
-    	add(la2);add(tf1);
+    	int width = 1000;
+    	int startX = (1550 - width) / 2;
     	
-    	la3.setBounds(30, 110, 80, 30);
-    	tf2.setBounds(115, 110, 350, 30);
-    	add(la3);add(tf2);
+    	mainTitleLabel.setBounds(startX, 50, width, 60);
+        add(mainTitleLabel);
+        
+        nameLabel.setBounds(startX, 150, 100, 40);
+        nameTextField.setBounds(startX + 110, 150, 200, 40);
+        add(nameLabel);add(nameTextField);
+        
+        titleTextLabel.setBounds(startX, 200, 100, 40);
+        titleTextField.setBounds(startX + 110, 200, width - 110, 40);
+        add(titleTextLabel);add(titleTextField);
+        
+        contentLabel.setBounds(startX, 250, 100, 40);
+        contentScrollPanel.setBounds(startX + 110, 250, width - 110, 350);
+        add(contentLabel);add(contentScrollPanel);
+        
+        pwdLabel.setBounds(startX, 620, 100, 40);
+        pwdTextField.setBounds(startX + 110, 620, 200, 40);
+        add(pwdLabel);add(pwdTextField);
+        
+        JPanel btnPanel=new JPanel();
+        btnPanel.setLayout(new FlowLayout(FlowLayout.CENTER, 20, 0)); 
+        writingBtn.setPreferredSize(new Dimension(200, 50)); // 글쓰기 버튼 크기 조절
+        cancelBtn.setPreferredSize(new Dimension(200, 50)); // 취소 버튼 크기 조절
+        btnPanel.add(writingBtn); btnPanel.add(cancelBtn);
+        btnPanel.setBounds(startX, 680, width, 50);
+        add(btnPanel);
     	
-    	la4.setBounds(30, 145, 80, 30);
-    	js.setBounds(115, 145, 350, 150);
-    	add(la4);add(js);
-    	
-    	la5.setBounds(30, 300, 80, 30);
-    	pf.setBounds(115, 300, 100, 30);
-    	add(la5);add(pf);
-    	
-    	JPanel p=new JPanel();
-    	p.add(b1);p.add(b2);
-    	p.setBounds(30, 340, 435, 35);    	
-    	add(p);
-    	
-    	b1.addActionListener(this);
-    	b2.addActionListener(this);
+        writingBtn.addActionListener(this);
+        cancelBtn.addActionListener(this);
 	}
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
-		if(e.getSource()==b1)
+		if(e.getSource()==writingBtn)
 		{
-			String name=tf1.getText();
+			String name=nameTextField.getText();
 			if(name.trim().length()<1)
 			{
 				JOptionPane.showMessageDialog(this, "이름을 입력하세요");
-				tf1.requestFocus();
+				nameTextField.requestFocus();
 				return;
 			}
 			
-			String subject=tf2.getText();
+			String subject=titleTextField.getText();
 			if(subject.trim().length()<1)
 			{
 				JOptionPane.showMessageDialog(this, "제목을 입력하세요");
-				tf2.requestFocus();
+				titleTextField.requestFocus();
 				return;
 			}
 			
-			String content=ta.getText();
+			String content=contentTextArea.getText();
 			if(content.trim().length()<1)
 			{
 				JOptionPane.showMessageDialog(this, "내용을 입력하세요");
-				ta.requestFocus();
+				contentTextArea.requestFocus();
 				return;
 			}
 			
-			String pwd=String.valueOf(pf.getPassword());
+			String pwd=String.valueOf(pwdTextField.getPassword());
 			if(pwd.trim().length()<1)
 			{
 				JOptionPane.showMessageDialog(this, "비밀번호를 입력하세요");
-				pf.requestFocus();
+				pwdTextField.requestFocus();
 				return;
 			}
 			
@@ -109,13 +123,13 @@ public class BoardInsert extends JPanel implements ActionListener{
 			BoardDAO dao=BoardDAO.newInstance();
 			dao.boardInsert(vo);
 			
-			bm.card.show(bm, "list");
-			bm.bf.print();
+			boardListForm.card.show(boardListForm, "list");
+			boardListForm.bf.print();
 			
 		}
-		else if(e.getSource()==b2)
+		else if(e.getSource()==cancelBtn)
 		{
-			bm.card.show(bm,"list");
+			boardListForm.card.show(boardListForm,"list");
 		}
 	}
 }

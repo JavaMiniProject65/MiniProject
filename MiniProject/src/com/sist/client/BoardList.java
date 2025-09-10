@@ -8,10 +8,10 @@ import java.util.List;
 import com.sist.dao.BoardDAO;
 import com.sist.vo.BoardVO;
 public class BoardList extends JPanel implements ActionListener{
-    JLabel la1,la2;
+    JLabel titleLabel,pagesCountLabel;
     JTable table;
     DefaultTableModel model;
-    JButton b1,b2,b3;
+    JButton writeBtn,previousBtn,nextBtn;
     private ControllerPanel bm;
     TableColumn column;
     // 현재페이지 / 총페이지 
@@ -20,12 +20,12 @@ public class BoardList extends JPanel implements ActionListener{
     public BoardList(ControllerPanel bm)
     {
     	this.bm=bm;
-    	la1=new JLabel("게시판",JLabel.CENTER);
-    	la1.setFont(new Font("맑은 고딕",Font.BOLD,40));
-    	la2=new JLabel("0 page / 0 pages");
-    	b1=new JButton("새글");
-    	b2=new JButton("이전");
-    	b3=new JButton("다음");
+    	titleLabel=new JLabel("게시판",JLabel.CENTER);
+    	titleLabel.setFont(new Font("맑은 고딕",Font.BOLD,50));
+    	pagesCountLabel=new JLabel("0 page / 0 pages");
+    	writeBtn=new JButton("새글");
+    	previousBtn=new JButton("이전");
+    	nextBtn=new JButton("다음");
     	
     	String[] col={"번호","제목","이름","작성일","조회수"};
     	String[][] row=new String[0][5];
@@ -40,59 +40,65 @@ public class BoardList extends JPanel implements ActionListener{
     		
     	};
     	table=new JTable(model);
-    	JScrollPane js=new JScrollPane(table);
+    	JScrollPane tableScrollPanel=new JScrollPane(table);
+
+    	// 수직 스크롤바 표기 X
+    	tableScrollPanel.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_NEVER);
+    	
     	for(int i=0;i<col.length;i++)
     	{
-    		DefaultTableCellRenderer rend=
-    				new DefaultTableCellRenderer();
+    		DefaultTableCellRenderer rend=new DefaultTableCellRenderer();
     		column=table.getColumnModel().getColumn(i);
     		if(i==0)
     		{
-    			column.setPreferredWidth(35);
+    			column.setPreferredWidth(80);
     			rend.setHorizontalAlignment(JLabel.CENTER);
     		}
     		else if(i==1)
     		{
-    			column.setPreferredWidth(350);
+    			column.setPreferredWidth(950);
     		}
     		else if(i==2)
     		{
-    			column.setPreferredWidth(100);
+    			column.setPreferredWidth(150);
     			rend.setHorizontalAlignment(JLabel.CENTER);
     		}
     		else if(i==3)
     		{
-    			column.setPreferredWidth(100);
+    			column.setPreferredWidth(200);
     			rend.setHorizontalAlignment(JLabel.CENTER);
     		}
     		else if(i==4)
     		{
-    			column.setPreferredWidth(50);
+    			column.setPreferredWidth(120);
     			rend.setHorizontalAlignment(JLabel.CENTER);
     		}
     		column.setCellRenderer(rend);
     	}
     	table.getTableHeader().setReorderingAllowed(false);
     	table.getTableHeader().setResizingAllowed(false);
-    	table.setRowHeight(30);
+    
+    	table.setRowHeight(52);		
+    	table.getTableHeader().setPreferredSize(new Dimension(table.getTableHeader().getPreferredSize().width, 50));
+    	
     	table.getTableHeader().setBackground(Color.pink);
     	
     	setLayout(null);
-    	la1.setBounds(10, 15, 610, 50);
-    	add(la1);
-    	b1.setBounds(30, 75, 80, 30);
-    	add(b1);
-    	js.setBounds(30, 110, 580, 350);
-    	add(js);
-    	JPanel p=new JPanel();
-    	p.add(b2);p.add(la2);p.add(b3);
-    	p.setBounds(30, 470, 580, 35);
-    	add(p);
+    	titleLabel.setBounds(10, 15, 1530, 60);
+    	add(titleLabel);
+    	writeBtn.setBounds(1350, 90, 150, 40);
+    	add(writeBtn);
+    	tableScrollPanel.setBounds(30, 150, 1490, 570);	
+    	add(tableScrollPanel);
+    	JPanel btnPanel=new JPanel();
+    	btnPanel.add(previousBtn);btnPanel.add(pagesCountLabel);btnPanel.add(nextBtn);
+    	btnPanel.setBounds(30, 710, 1490, 45);
+    	add(btnPanel);
     	print();
     	
-    	b1.addActionListener(this);
-    	b2.addActionListener(this);
-    	b3.addActionListener(this);
+    	writeBtn.addActionListener(this);
+    	previousBtn.addActionListener(this);
+    	nextBtn.addActionListener(this);
     }
     // 데이터 출력 
     public void print()
@@ -121,13 +127,13 @@ public class BoardList extends JPanel implements ActionListener{
     		model.addRow(data);
     		count--;
     	}
-    	la2.setText(curpage +" page / "+totalpage+" pages");
+    	pagesCountLabel.setText(curpage +" page / "+totalpage+" pages");
     	
     }
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
-		if(e.getSource()==b2)// 이전
+		if(e.getSource()==previousBtn)// 이전
 		{
 			if(curpage>1)
 			{
@@ -135,7 +141,7 @@ public class BoardList extends JPanel implements ActionListener{
 				print();
 			}
 		}
-		else if(e.getSource()==b3) //다음
+		else if(e.getSource()==nextBtn) //다음
 		{
 			if(curpage<totalpage)
 			{
@@ -143,7 +149,7 @@ public class BoardList extends JPanel implements ActionListener{
 				print();
 			}
 		}
-		else if(e.getSource()==b1)
+		else if(e.getSource()==writeBtn)
 		{
 			bm.card.show(bm, "insert");			
 			

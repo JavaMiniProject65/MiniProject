@@ -39,7 +39,6 @@ public class ClientMainFrame extends JFrame implements ActionListener {
 			UIManager.setLookAndFeel("com.jtattoo.plaf.mcwin.McWinLookAndFeel");
 		} catch(Exception e) {}
 		new ClientMainFrame(); 
-		// ClientMainFrame c=new ClientMainFrame();
 	}
 	@Override
 	public void actionPerformed(ActionEvent e) {

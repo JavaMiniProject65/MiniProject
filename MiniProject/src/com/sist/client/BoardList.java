@@ -7,7 +7,7 @@ import javax.swing.table.*;
 import java.util.List;
 import com.sist.dao.BoardDAO;
 import com.sist.vo.BoardVO;
-public class BoardList extends JPanel implements ActionListener{
+public class BoardList extends JPanel implements ActionListener, MouseListener{
     JLabel titleLabel,pagesCountLabel;
     JTable table;
     DefaultTableModel model;
@@ -29,8 +29,8 @@ public class BoardList extends JPanel implements ActionListener{
     	previousBtn=new JButton("이전");
     	nextBtn=new JButton("다음");
     	
-    	String[] col={"번호","제목","이름","작성일","조회수"};
-    	String[][] row=new String[0][5];
+    	String[] col={"번호", "","제목","이름","작성일","조회수"};
+    	String[][] row=new String[0][6];
     	model=new DefaultTableModel(row,col)
     	{
 
@@ -47,36 +47,40 @@ public class BoardList extends JPanel implements ActionListener{
     	// 수직 스크롤바 표기 X
     	tableScrollPanel.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_NEVER);
     	
-    	for(int i=0;i<col.length;i++)
-    	{
-    		DefaultTableCellRenderer rend=new DefaultTableCellRenderer();
-    		column=table.getColumnModel().getColumn(i);
-    		if(i==0)
-    		{
-    			column.setPreferredWidth(80);
-    			rend.setHorizontalAlignment(JLabel.CENTER);
-    		}
-    		else if(i==1)
-    		{
-    			column.setPreferredWidth(950);
-    		}
-    		else if(i==2)
-    		{
-    			column.setPreferredWidth(150);
-    			rend.setHorizontalAlignment(JLabel.CENTER);
-    		}
-    		else if(i==3)
-    		{
-    			column.setPreferredWidth(200);
-    			rend.setHorizontalAlignment(JLabel.CENTER);
-    		}
-    		else if(i==4)
-    		{
-    			column.setPreferredWidth(120);
-    			rend.setHorizontalAlignment(JLabel.CENTER);
-    		}
-    		column.setCellRenderer(rend);
-    	}
+    	for(int i = 0; i < col.length; i++) 
+		{
+			DefaultTableCellRenderer rend = new DefaultTableCellRenderer();
+			column = table.getColumnModel().getColumn(i);
+			if(i == 0)
+			{
+				column.setPreferredWidth(35);
+				rend.setHorizontalAlignment(JLabel.CENTER);
+			}
+			else if(i == 1)
+			{
+				
+			}
+			else if(i == 2)
+			{
+				column.setPreferredWidth(350);
+			}
+			else if(i == 3)
+			{
+				column.setPreferredWidth(100);
+				rend.setHorizontalAlignment(JLabel.CENTER);
+			}
+			else if(i == 4)
+			{
+				column.setPreferredWidth(100);
+				rend.setHorizontalAlignment(JLabel.CENTER);
+			}
+			else if(i == 5)
+			{
+				column.setPreferredWidth(50);
+				rend.setHorizontalAlignment(JLabel.CENTER);
+			}
+			column.setCellRenderer(rend);
+		}
     	table.getTableHeader().setReorderingAllowed(false);
     	table.getTableHeader().setResizingAllowed(false);
     
@@ -84,6 +88,8 @@ public class BoardList extends JPanel implements ActionListener{
     	table.getTableHeader().setPreferredSize(new Dimension(table.getTableHeader().getPreferredSize().width, 50));
     	
     	table.getTableHeader().setBackground(Color.pink);
+    	
+    	table.getColumnModel().removeColumn(table.getColumnModel().getColumn(1));
     	
     	setLayout(null);
     	titleLabel.setBounds(10, 15, 1530, 60);
@@ -104,6 +110,7 @@ public class BoardList extends JPanel implements ActionListener{
     	writeBtn.addActionListener(this);
     	previousBtn.addActionListener(this);
     	nextBtn.addActionListener(this);
+    	table.addMouseListener(this);	// Table / Tree / Label
     }
     // 데이터 출력 
     public void print()
@@ -124,6 +131,7 @@ public class BoardList extends JPanel implements ActionListener{
     	{
     		String[] data= {
     			String.valueOf(count),
+    			String.valueOf(vo.getNo()),
     			vo.getSubject(),
     			vo.getName(),
     			vo.getDbday(),
@@ -160,6 +168,32 @@ public class BoardList extends JPanel implements ActionListener{
 			bm.bi.resetForm();
 		
 		}
+	}
+	@Override
+	public void mouseClicked(MouseEvent e) {
+		// TODO Auto-generated method stub
+		if(e.getSource() == table)
+		{
+			if(e.getClickCount() == 2)
+			{
+				int row = table.getSelectedRow();
+				String no = model.getValueAt(row, 1).toString();
+				bm.card.show(bm, "detail");
+				bm.bDetail.print(Integer.parseInt(no));
+			}
+		}
+	}
+	@Override
+	public void mousePressed(MouseEvent e) {
+	}
+	@Override
+	public void mouseReleased(MouseEvent e) {
+	}
+	@Override
+	public void mouseEntered(MouseEvent e) {
+	}
+	@Override
+	public void mouseExited(MouseEvent e) {
 	}
     
 }

@@ -180,6 +180,10 @@ public class BoardDetail extends JPanel implements ActionListener{
 		else if(e.getSource() == b1)	// 수정
 		{
 			String no = la_p1.getText();
+			pf.setText("");
+			bCheck = false;
+			pan.setVisible(false);
+			b2.setText("삭제");
 			bm.card.show(bm, "update");
 			bm.bUpdate.pf.setText("");
 			bm.bUpdate.print(Integer.parseInt(no));

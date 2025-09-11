@@ -181,6 +181,7 @@ public class BoardDetail extends JPanel implements ActionListener{
 		{
 			String no = la_p1.getText();
 			bm.card.show(bm, "update");
+			bm.bUpdate.pf.setText("");
 			bm.bUpdate.print(Integer.parseInt(no));
 		}
 	}

@@ -43,47 +43,75 @@ public class BoardDetail extends JPanel implements ActionListener{
 		b1 = new JButton("수정");
 		b2 = new JButton("삭제");
 		b3 = new JButton("목록");
+		b1.setPreferredSize(new Dimension(100, 40));
+		b2.setPreferredSize(new Dimension(100, 40));
+		b3.setPreferredSize(new Dimension(100, 40));
+		
 		
 		la7 = new JLabel("비밀번호", JLabel.CENTER);
 		pf = new JPasswordField(7);
 		b4 = new JButton("삭제");
+		b4 = new JButton("삭제");
+		b4.setPreferredSize(new Dimension(100, 40));
+		
 		pan.add(la7); pan.add(pf); pan.add(b4);
 		
 		// 배치
 		setLayout(null);
-		la1.setFont(new Font("맑은 고딕", Font.BOLD, 40));
-		la1.setBounds(10, 15, 610, 50);
+		
+		int panelWidth = 1550;
+		int componentWidth = 1200;
+		int xOffset = (panelWidth - componentWidth) / 2;
+		
+		la1.setFont(new Font("맑은 고딕", Font.BOLD, 50));
+		la1.setBounds(xOffset, 50, componentWidth, 50);
 		add(la1);
 		
-		la2.setBounds(100, 75, 100, 30);
-		la_p1.setBounds(205, 75, 100, 30);
+		Font mainFont = new Font("맑은 고딕", Font.PLAIN, 15); // 나머지 라벨 폰트
+		Font mainBoldFont = new Font("맑은 고딕", Font.BOLD, 15); // 나머지 라벨 폰트
+		
+		la2.setFont(mainBoldFont);
+		la2.setBounds(xOffset + 50, 120, 100, 30);
+		la_p1.setFont(mainFont);
+		la_p1.setBounds(xOffset + 160, 120, 200, 30);
 		add(la2); add(la_p1);
 		
-		la3.setBounds(310, 75, 100, 30);
-		la_p2.setBounds(415, 75, 100, 30);
+		la3.setFont(mainBoldFont);
+		la3.setBounds(xOffset + 400, 120, 100, 30);
+		la_p2.setFont(mainFont);
+		la_p2.setBounds(xOffset + 510, 120, 250, 30);
 		add(la3); add(la_p2);
 		
-		la4.setBounds(100, 110, 100, 30);
-		la_p3.setBounds(205, 110, 100, 30);
+		la4.setFont(mainBoldFont);
+		la4.setBounds(xOffset + 50, 160, 100, 30);
+		la_p3.setFont(mainFont);
+		la_p3.setBounds(xOffset + 160, 160, 200, 30);
 		add(la4); add(la_p3);
 		
-		la5.setBounds(310, 110, 100, 30);
-		la_p4.setBounds(415, 110, 100, 30);
+		la5.setFont(mainBoldFont);
+		la5.setBounds(xOffset + 400, 160, 100, 30);
+		la_p4.setFont(mainFont);
+		la_p4.setBounds(xOffset + 510, 160, 250, 30);
 		add(la5); add(la_p4);
 		
-		la6.setBounds(100, 145, 100, 30);
-		la_p5.setBounds(205, 145, 310, 30);
+		la6.setFont(mainBoldFont);
+		la6.setBounds(xOffset + 50, 200, 100, 30);
+		la_p5.setFont(mainFont);
+		la_p5.setBounds(xOffset + 160, 200, 600, 30);
 		add(la6); add(la_p5);
 		
-		js.setBounds(100, 180, 415, 150);
+		ta.setFont(mainFont);
+		js.setBounds(xOffset + 50, 250, 1100, 350);
 		add(js);
+		
+		la7.setFont(mainBoldFont);
 		
 		JPanel p = new JPanel();
 		p.add(b1); p.add(b2); p.add(b3);
-		p.setBounds(285, 340, 240, 35);
+		p.setBounds(xOffset + 450, 620, 320, 50);
 		add(p);
 		
-		pan.setBounds(285, 385, 240, 35);
+		pan.setBounds(xOffset + 450, 670, 320, 50);
 		add(pan);
 		
 		pan.setVisible(false);

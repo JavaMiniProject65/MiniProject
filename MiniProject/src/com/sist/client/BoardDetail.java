@@ -51,7 +51,6 @@ public class BoardDetail extends JPanel implements ActionListener{
 		la7 = new JLabel("비밀번호", JLabel.CENTER);
 		pf = new JPasswordField(7);
 		b4 = new JButton("삭제");
-		b4 = new JButton("삭제");
 		b4.setPreferredSize(new Dimension(100, 40));
 		
 		pan.add(la7); pan.add(pf); pan.add(b4);
@@ -114,6 +113,7 @@ public class BoardDetail extends JPanel implements ActionListener{
 		pan.setBounds(xOffset + 450, 670, 320, 50);
 		add(pan);
 		
+		
 		pan.setVisible(false);
 		
 		b1.addActionListener(this);	// 수정
@@ -145,10 +145,7 @@ public class BoardDetail extends JPanel implements ActionListener{
 		else if(e.getSource() == b3)
 		{
 			bm.card.show(bm, "list");
-			pf.setText("");
-			pan.setVisible(false);
-			bCheck = true;
-			b2.setText("삭제");
+			resetPwdBtn();
 			bm.bf.print();
 		}
 		else if(e.getSource() == b4)
@@ -167,7 +164,7 @@ public class BoardDetail extends JPanel implements ActionListener{
 			if(bCheck == true)
 			{
 				bm.card.show(bm, "list");
-				
+				resetPwdBtn();
 				bm.bf.print();
 			}
 			else	// 비밀번호가 틀린 상태 
@@ -180,10 +177,7 @@ public class BoardDetail extends JPanel implements ActionListener{
 		else if(e.getSource() == b1)	// 수정
 		{
 			String no = la_p1.getText();
-			pf.setText("");
-			bCheck = false;
-			pan.setVisible(false);
-			b2.setText("삭제");
+			resetPwdBtn();
 			bm.card.show(bm, "update");
 			bm.bUpdate.pf.setText("");
 			bm.bUpdate.print(Integer.parseInt(no));
@@ -200,5 +194,12 @@ public class BoardDetail extends JPanel implements ActionListener{
 		la_p5.setText(vo.getSubject());
 		ta.setText(vo.getContent());
 		
+	}
+	public void resetPwdBtn()	// 비밀번호 버튼 숨기기, 비밀번호 지우기
+	{
+		pf.setText("");
+		bCheck = false;
+		pan.setVisible(false);
+		b2.setText("삭제");
 	}
 }

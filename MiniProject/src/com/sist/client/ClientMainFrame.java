@@ -45,21 +45,27 @@ public class ClientMainFrame extends JFrame implements ActionListener {
 		// TODO Auto-generated method stub
 		if(e.getSource()==menu.b1) {
 			cp.card.show(cp, "HF");
+			cp.bDetail.resetPwdBtn();
 		}
 		if(e.getSource()==menu.b2) {
 			cp.card.show(cp, "SF");
+			cp.bDetail.resetPwdBtn();
 			}
 		if(e.getSource()==menu.b3) {
 			cp.card.show(cp, "RF");
+			cp.bDetail.resetPwdBtn();
 		}
 		if(e.getSource()==menu.b4) {
 			cp.card.show(cp, "CF");
+			cp.bDetail.resetPwdBtn();
 		}
 		if(e.getSource()==menu.b5) {
 			cp.card.show(cp, "list");
+			cp.bDetail.resetPwdBtn();
 		}
 		if(e.getSource()==menu.b6) {
 			cp.card.show(cp, "CIF");
+			cp.bDetail.resetPwdBtn();
 		}
 		if(e.getSource()==login.b1) // 로그인 버튼
 		{

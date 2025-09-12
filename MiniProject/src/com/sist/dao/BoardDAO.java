@@ -8,7 +8,7 @@ public class BoardDAO {
    private PreparedStatement ps; // 송수신 => SQL 전송 => 결과값을 메모리 저장
    private static BoardDAO dao; // DAO객체를 한사람당 1개씩만 사용 
    // 메모리 공간을 한개만 생성 => 메모리 누수현상을 방지 = 싱글턴 
-   private final String URL="jdbc:oracle:thin:@localhost:1521:XE";
+   private final String URL="jdbc:oracle:thin:@211.238.142.22:1521:XE";
    // 변경할 수 없다 ======================>@localhost (ip) port:1521 XE:데이터베이스(폴더)
    // se(XE) pe(ORCL) 
    private final int rowSize=10;
@@ -41,7 +41,7 @@ public class BoardDAO {
    {
 	   try
 	   {
-		   conn=DriverManager.getConnection(URL,"hr","happy");
+		   conn=DriverManager.getConnection(URL,"hr_3","happy");
 	   }catch(Exception ex) {}
    }
    public void disConnection()

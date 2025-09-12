@@ -54,7 +54,7 @@ public class HomeForm extends JPanel implements ActionListener {
 		b1.addActionListener(this);
 		b2.addActionListener(this);
 		
-		String[] col= {"","업체명","지역"};
+		String[] col= {"인기순위","업체명","지역"};
 		Object[][] row=new Object[0][3];
 		model=new DefaultTableModel(row,col) {
 
@@ -72,6 +72,7 @@ public class HomeForm extends JPanel implements ActionListener {
 		};
 		table=new JTable(model);
 		table.getTableHeader().setReorderingAllowed(false);
+    	table.getTableHeader().setResizingAllowed(false);
 		table.setRowHeight(35);
 		JScrollPane js=new JScrollPane(table);
 		for(int i=0;i<col.length;i++) {

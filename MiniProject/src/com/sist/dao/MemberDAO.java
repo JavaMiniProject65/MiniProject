@@ -8,7 +8,27 @@ public class MemberDAO {
    //                                         211.238.142.22
    private final String URL="jdbc:oracle:thin:@211.238.142.22:1521:XE";
    private static MemberDAO dao;
-   
+  
+
+	    
+   public boolean isExistId(String id) {
+	    boolean exists = false;
+	    try {
+	        getConnection();
+	        String sql = "SELECT COUNT(*) FROM project_member WHERE id=?";
+	        ps = conn.prepareStatement(sql);
+	        ps.setString(1, id);
+	        ResultSet rs = ps.executeQuery();
+	        rs.next();
+	        if (rs.getInt(1) > 0) exists = true;
+	        rs.close();
+	    } catch (Exception ex) {
+	        ex.printStackTrace();
+	    } finally {
+	        disConnection();
+	    }
+	    return exists;
+	}
    // 드라이버 등록 
    public MemberDAO()
    {

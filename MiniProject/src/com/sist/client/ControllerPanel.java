@@ -3,7 +3,7 @@ import javax.swing.*;
 import java.awt.*;
 
 public class ControllerPanel extends JPanel {
-	HomeForm hf=new HomeForm();
+	HomeForm hf;
 	ChatForm cf=new ChatForm();
 	BoardList bf;
 	BoardInsert bi;
@@ -16,6 +16,7 @@ public class ControllerPanel extends JPanel {
 	CardLayout card=new CardLayout();
 	
 	public ControllerPanel() {
+		hf=new HomeForm(this);
 		bf=new BoardList(this);
 		bi=new BoardInsert(this);
 		bDetail = new BoardDetail(this);

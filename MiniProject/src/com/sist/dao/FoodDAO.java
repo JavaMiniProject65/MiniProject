@@ -105,8 +105,8 @@ public class FoodDAO {
 		List<FoodVO> list=new ArrayList<FoodVO>();
 		try {
 			getConnection();
-			String sql="SELECT fno,name,SUBSTR(address,1,2),poster,rownum "
-					+ "FROM (SELECT fno,name,address,poster "
+			String sql="SELECT fno,name,SUBSTR(address,1,2),poster,hit,rownum "
+					+ "FROM (SELECT fno,name,address,poster,hit "
 					+ "FROM project_food ORDER BY hit DESC) "
 					+ "WHERE rownum<=10";
 			ps=conn.prepareStatement(sql);
@@ -117,6 +117,7 @@ public class FoodDAO {
 				vo.setName(rs.getString(2));
 				vo.setAddress(rs.getString(3));
 				vo.setPoster(rs.getString(4));
+				vo.setHit(rs.getInt(5));
 				list.add(vo);
 			}
 			rs.close();

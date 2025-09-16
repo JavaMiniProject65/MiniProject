@@ -69,7 +69,7 @@ public class FoodFind extends JPanel implements ActionListener,MouseListener{
      		column=table.getColumnModel().getColumn(i);
      		if(i==0)
      		{
-     			column.setPreferredWidth(30);
+     			column.setPreferredWidth(70);
      			//rend.setHorizontalAlignment(JLabel.CENTER);
      		}
      		else if(i==1)
@@ -78,7 +78,7 @@ public class FoodFind extends JPanel implements ActionListener,MouseListener{
      		}
      		else if(i==2)
      		{
-     			column.setPreferredWidth(550);
+     			column.setPreferredWidth(795);
      		}
 
      		
@@ -96,6 +96,7 @@ public class FoodFind extends JPanel implements ActionListener,MouseListener{
      	                 setCellRenderer(centerRenderer);
      	table.getColumnModel().getColumn(0).
          setCellRenderer(centerRenderer);
+     	table.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
      	
      	tf=new JTextField(10);
      	btn=new JButton("검색");

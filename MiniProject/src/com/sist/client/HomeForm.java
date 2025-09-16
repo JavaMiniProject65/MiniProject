@@ -56,8 +56,8 @@ public class HomeForm extends JPanel implements ActionListener,MouseListener {
 		b1.addActionListener(this);
 		b2.addActionListener(this);
 		
-		String[] col= {"인기순위","업체명","지역"};
-		Object[][] row=new Object[0][3];
+		String[] col= {"인기","업체명","지역","조회수"};
+		Object[][] row=new Object[0][4];
 		model=new DefaultTableModel(row,col) {
 
 			@Override
@@ -76,15 +76,28 @@ public class HomeForm extends JPanel implements ActionListener,MouseListener {
 		table.getTableHeader().setReorderingAllowed(false);
     	table.getTableHeader().setResizingAllowed(false);
 		table.setRowHeight(35);
+		
+		
+		DefaultTableCellRenderer centerRenderer = 
+     			new DefaultTableCellRenderer();
+     	centerRenderer.setHorizontalAlignment(SwingConstants.CENTER);
+     	table.getColumnModel().getColumn(2).
+     	                 setCellRenderer(centerRenderer);
+     	table.getColumnModel().getColumn(3).
+         setCellRenderer(centerRenderer);
+     	table.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
+     	
 		JScrollPane js=new JScrollPane(table);
 		for(int i=0;i<col.length;i++) {
 			TableColumn column=table.getColumnModel().getColumn(i);
 			if(i==0)
-				column.setPreferredWidth(100);
+				column.setPreferredWidth(35);
 			else if(i==1)
-				column.setPreferredWidth(150);
+				column.setPreferredWidth(160);
 			else if(i==2)
-				column.setPreferredWidth(100);
+				column.setPreferredWidth(70);
+			else if(i==3)
+				column.setPreferredWidth(50);
 		}
 		js.setBounds(1200,15,320,376);
 		add(js);
@@ -128,7 +141,8 @@ public class HomeForm extends JPanel implements ActionListener,MouseListener {
 				Object[] data= {
 					new ImageIcon(image),
 					vo.getName(),
-					vo.getAddress()
+					vo.getAddress(),
+					vo.getHit()
 				};
 				model.addRow(data);
 			} catch (Exception ex) {

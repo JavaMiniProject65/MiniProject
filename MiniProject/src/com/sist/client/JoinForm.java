@@ -79,7 +79,8 @@ public class JoinForm extends JFrame implements ActionListener {
         b3.addActionListener(this);
 
         setSize(450, 385);
-        setVisible(true);
+        setLocationRelativeTo(null);
+        //setVisible(true);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
     }
 

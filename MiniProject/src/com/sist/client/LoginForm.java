@@ -37,6 +37,7 @@ public class LoginForm extends JFrame{
 		
 		add(p);
 		setSize(400, 250);
+		setLocationRelativeTo(null);
 		setVisible(true);       
 		
 //		b1.addActionListener(this);

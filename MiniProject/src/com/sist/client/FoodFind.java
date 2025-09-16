@@ -78,7 +78,7 @@ public class FoodFind extends JPanel implements ActionListener,MouseListener{
      		}
      		else if(i==2)
      		{
-     			column.setPreferredWidth(795);
+     			column.setPreferredWidth(790);
      		}
 
      		

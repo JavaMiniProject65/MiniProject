@@ -100,15 +100,23 @@ public class JoinForm extends JFrame implements ActionListener {
             }
         } else if (e.getSource() == b1) { // 회원가입
             try {
+                // ★ 수정: 필수값 공백 방지(Oracle은 빈문자열을 NULL로 취급 → ORA-01400 예방)
+                String id    = tf1.getText().trim(); 
+                String pwd   = new String(pf.getPassword()).trim(); // ★ 수정: trim() 추가
+                String name  = tf2.getText().trim();                 // ★ 수정: 이름 공백 체크
+                if (id.isEmpty())   { JOptionPane.showMessageDialog(this, "ID를 입력하세요."); tf1.requestFocus(); return; }
+                if (pwd.isEmpty())  { JOptionPane.showMessageDialog(this, "비밀번호를 입력하세요."); pf.requestFocus(); return; }
+                if (name.isEmpty()) { JOptionPane.showMessageDialog(this, "이름을 입력하세요."); tf2.requestFocus(); return; }
+
                 MemberVO vo = new MemberVO();
-                vo.setId(tf1.getText().trim());
-                vo.setPwd(new String(pf.getPassword()));
-                vo.setName(tf2.getText().trim());
+                vo.setId(id);
+                vo.setPwd(pwd);
+                vo.setName(name);
                 vo.setSex(rb1.isSelected() ? "남자" : "여자");
                 vo.setPost(tf3.getText().trim());
                 vo.setAddr1(tf4.getText().trim());
                 vo.setAddr2(tf5.getText().trim());
-                vo.setTel(tf6.getText().trim());
+                vo.setPhone(tf6.getText().trim()); // ★ 수정: setTel(...) → setPhone(...) 으로 통일
 
                 dao.memberJoin(vo); // DB 저장
                 JOptionPane.showMessageDialog(this, "회원가입이 완료되었습니다.");

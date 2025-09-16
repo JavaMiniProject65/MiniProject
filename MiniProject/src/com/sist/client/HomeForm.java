@@ -1,18 +1,20 @@
 package com.sist.client;
 import javax.swing.*;
 
-import com.sist.commons.imageChange;
+import com.sist.commons.ImageChange;
 import com.sist.dao.FoodDAO;
 import com.sist.vo.FoodVO;
 
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.net.URL;
 import java.util.List;
 import javax.swing.table.*;
 
-public class HomeForm extends JPanel implements ActionListener {
+public class HomeForm extends JPanel implements ActionListener,MouseListener {
 	ControllerPanel cp;
 	JPanel pan=new JPanel();
 	JLabel[] imgs=new JLabel[12];
@@ -32,7 +34,7 @@ public class HomeForm extends JPanel implements ActionListener {
 		        System.err.println("이미지를 찾을 수 없습니다.");
 		        return;
 		    }
-		    Image logoImg = imageChange.getImage(new ImageIcon(url), 320, 320);
+		    Image logoImg = ImageChange.getImage(new ImageIcon(url), 320, 320);
 		    JLabel mapLa = new JLabel(new ImageIcon(logoImg));
 		    mapLa.setBounds(1200, 400, 320, 340);
 		    add(mapLa);
@@ -104,9 +106,10 @@ public class HomeForm extends JPanel implements ActionListener {
 			FoodVO vo=list.get(i);
 			try {
 				URL url=new URL(vo.getPoster());
-				Image image=imageChange.getImage(new ImageIcon(url), 270, 230);
+				Image image=ImageChange.getImage(new ImageIcon(url), 270, 230);
 				imgs[i]=new JLabel(new ImageIcon(image));
 				imgs[i].setToolTipText(vo.getFno()+"."+vo.getName());
+				imgs[i].addMouseListener(this);
 				pan.add(imgs[i]);
 			} catch (Exception x) {}
 			pageLa.setText(curpage+" page / "+totalpage+"pages");
@@ -120,7 +123,7 @@ public class HomeForm extends JPanel implements ActionListener {
 		for(FoodVO vo:tList) {
 			try {
 				URL url=new URL(vo.getPoster());
-				Image image=imageChange.getImage(new ImageIcon(url), 35, 35);
+				Image image=ImageChange.getImage(new ImageIcon(url), 35, 35);
 				System.out.println(tList.size());
 				Object[] data= {
 					new ImageIcon(image),
@@ -149,5 +152,40 @@ public class HomeForm extends JPanel implements ActionListener {
 				print();
 			}
 		}
+	}
+	@Override
+	public void mouseClicked(MouseEvent e) {
+		// TODO Auto-generated method stub
+		System.out.println("asd");
+		for(int i=0;i<imgs.length;i++) {
+			if(e.getSource()==imgs[i]) {
+				String s=imgs[i].getToolTipText();
+				s=s.substring(0,s.indexOf("."));
+				FoodDetail.type=0;
+				//JOptionPane.showMessageDialog(this, "선택된 번호:"+s);
+				cp.card.show(cp, "FD");
+				cp.fd.print(Integer.parseInt(s));
+			}
+		}
+	}
+	@Override
+	public void mousePressed(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+	@Override
+	public void mouseReleased(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+	@Override
+	public void mouseEntered(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+	@Override
+	public void mouseExited(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
 	}
 }

@@ -8,6 +8,7 @@ public class ClientMainFrame extends JFrame implements ActionListener {
 	ControllerPanel cp=new ControllerPanel();
 	LoginForm login=new LoginForm();
 	JoinForm join=new JoinForm();
+	FoodDetail fd=new FoodDetail(cp);
 
 	// has-a => 포함 클래스
 	public ClientMainFrame() {
@@ -49,7 +50,7 @@ public class ClientMainFrame extends JFrame implements ActionListener {
 			cp.bf.print();
 		}
 		if(e.getSource()==menu.b2) {
-			cp.card.show(cp, "SF");
+			cp.card.show(cp, "ff");
 			cp.bDetail.resetPwdBtn();
 			cp.bf.print();
 			}

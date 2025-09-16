@@ -7,11 +7,12 @@ public class ControllerPanel extends JPanel {
 	ChatForm cf=new ChatForm();
 	BoardList bf;
 	BoardInsert bi;
+	FoodFind ff;
+	FoodDetail fd;
 	BoardDetail bDetail;
 	BoardUpdate bUpdate;
 	
 	ReservationForm rf=new ReservationForm();
-	SearchForm sf=new SearchForm();
 	ClientInfoForm cif=new ClientInfoForm();
 	CardLayout card=new CardLayout();
 	
@@ -19,6 +20,8 @@ public class ControllerPanel extends JPanel {
 		hf=new HomeForm(this);
 		bf=new BoardList(this);
 		bi=new BoardInsert(this);
+		ff=new FoodFind(this);
+		fd=new FoodDetail(this);
 		bDetail = new BoardDetail(this);
 		bUpdate = new BoardUpdate(this);
 		setLayout(card);
@@ -26,10 +29,11 @@ public class ControllerPanel extends JPanel {
 		add("CF",cf);
 		add("BF",bf);
 		add("RF",rf);
-		add("SF",sf);
 		add("CIF",cif);
 		add("list",bf);
 		add("insert",bi);
+		add("ff",ff);
+		add("FD",fd);
 		add("detail", bDetail);
 		add("update", bUpdate);
 	}

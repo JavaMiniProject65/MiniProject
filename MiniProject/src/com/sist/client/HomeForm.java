@@ -179,6 +179,10 @@ public class HomeForm extends JPanel implements ActionListener,MouseListener {
 				//JOptionPane.showMessageDialog(this, "선택된 번호:"+s);
 				cp.card.show(cp, "FD");
 				cp.fd.print(Integer.parseInt(s));
+				
+				init();
+	            print();
+
 			}
 		}
 	}

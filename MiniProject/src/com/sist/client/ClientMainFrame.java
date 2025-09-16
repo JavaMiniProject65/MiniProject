@@ -33,6 +33,7 @@ public class ClientMainFrame extends JFrame implements ActionListener {
     	join.b1.addActionListener(this); // 회원가입
     	join.b2.addActionListener(this); // 취소
 	}
+	//222
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		try {

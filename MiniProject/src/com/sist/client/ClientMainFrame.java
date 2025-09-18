@@ -17,6 +17,7 @@ public class ClientMainFrame extends JFrame implements ActionListener {
 	PostFind post=new PostFind();
 	IdCheck ic=new IdCheck();
 
+	
 	// has-a => 포함 클래스
 	public ClientMainFrame() {
 		setLayout(null);

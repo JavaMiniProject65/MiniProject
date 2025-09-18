@@ -13,13 +13,12 @@ public class ClientMainFrame extends JFrame implements ActionListener {
 	ControllerPanel cp=new ControllerPanel();
 	LoginForm login=new LoginForm();
 	JoinForm join=new JoinForm();
+	
 	FoodDetail fd=new FoodDetail(cp);
 
 	PostFind post=new PostFind();
 	IdCheck ic=new IdCheck();
-
 	
-
 	JMenuItem a;
 	JMenuItem b;
 	JMenuItem c;
@@ -60,6 +59,10 @@ public class ClientMainFrame extends JFrame implements ActionListener {
 		menu.b4.addActionListener(this);
 		menu.b5.addActionListener(this);
 		menu.b6.addActionListener(this);
+
+		// ★ 추가: 회원가입 폼의 ID 입력칸을 처음엔 비활성화 + 편집 불가
+		join.tf1.setEnabled(false);     // 회색 + 포커스/입력 불가
+		join.tf1.setEditable(false);    // 혹시 활성화돼도 편집은 잠금
 		
 		login.b1.addActionListener(this); // 로그인
     	login.b2.addActionListener(this); // 회원가입
@@ -241,9 +244,18 @@ public class ClientMainFrame extends JFrame implements ActionListener {
 		}
 		else if(e.getSource()==join.b3)
 		{
-			ic.tf.setText("");
-			ic.rla.setText("");
-			ic.setVisible(true);
+		    // ★ 추가: 중복확인 누르면 ID입력칸 초기화 + 잠금 유지
+		    join.tf1.setText("");
+		    join.tf1.setEnabled(false);
+		    join.tf1.setEditable(false);
+
+		    ic.tf.setText("");
+		    ic.rla.setText("");
+		    ic.setVisible(true);
+
+		    // ★ 추가: 다이얼로그의 텍스트필드에 즉시 커서 + 전체선택
+		    ic.tf.requestFocusInWindow();
+		    ic.tf.selectAll();
 		}
 		else if(e.getSource()==join.b4)
 		{
@@ -291,9 +303,17 @@ public class ClientMainFrame extends JFrame implements ActionListener {
 				// 결과
 				else if(e.getSource()==ic.ok)
 				{
-					String id=ic.tf.getText();
-					join.tf1.setText(id);
-					ic.setVisible(false);
+				    String id=ic.tf.getText();
+				    join.tf1.setText(id);
+				    join.tf1.setEnabled(true);      // 회색 해제
+				    join.tf1.setEditable(false);    // 편집은 금지(검증 후 변조 방지)
+
+				    // ★ 선택: 다음 입력 흐름 좋게 - 비밀번호 칸으로 포커스 넘기기
+				    if (join.pf != null) {
+				        join.pf.requestFocusInWindow();
+				    }
+
+				    ic.setVisible(false);
 				}
 				// 우편번호 검색
 				else if(e.getSource()==post.btn||e.getSource()==post.tf)

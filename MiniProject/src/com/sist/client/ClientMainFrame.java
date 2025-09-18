@@ -9,9 +9,31 @@ public class ClientMainFrame extends JFrame implements ActionListener {
 	LoginForm login=new LoginForm();
 	JoinForm join=new JoinForm();
 	FoodDetail fd=new FoodDetail(cp);
-
+	JMenuItem a;
+	JMenuItem b;
+	JMenuItem c;
+	JMenuItem d;
+	JMenuItem e;
+	JMenuItem f;
 	// has-a => 포함 클래스
 	public ClientMainFrame() {
+		
+		JMenuBar bar=new JMenuBar();
+		JMenu menu1=new JMenu("개인"); 
+		a=new JMenuItem("김민석");
+		b=new JMenuItem("유재현");
+		c=new JMenuItem("윤준식");
+		d=new JMenuItem("배수연");
+		e=new JMenuItem("박성진");
+		f=new JMenuItem("이수현");
+		menu1.add(a);
+		menu1.add(b);
+		menu1.add(c);
+		menu1.add(d);
+		menu1.add(e);
+		menu1.add(f);
+		bar.add(menu1);
+		setJMenuBar(bar);
 		setLayout(null);
 		menu.setBounds(350, 25, 900, 70);
 		cp.setBounds(30, 120, 1550, 780);

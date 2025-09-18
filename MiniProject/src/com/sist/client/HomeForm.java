@@ -28,23 +28,26 @@ public class HomeForm extends JPanel implements ActionListener,MouseListener {
 	public HomeForm(ControllerPanel cp) {
 		this.cp=cp;
 		setLayout(null);
+		
+		pan.setLayout(new GridLayout(3,4,5,5));
+		pan.setBounds(30,15,1150,720);
+		add(pan);
 		try {
 		    URL url = getClass().getResource("/com/sist/client/전국 맛집.jpg");
 		    if (url == null) {
 		        System.err.println("이미지를 찾을 수 없습니다.");
 		        return;
 		    }
-		    Image logoImg = ImageChange.getImage(new ImageIcon(url), 320, 320);
-		    JLabel mapLa = new JLabel(new ImageIcon(logoImg));
+		    Image mapImg = ImageChange.getImage(new ImageIcon(url), 320, 320);
+		    JLabel mapLa = new JLabel(new ImageIcon(mapImg));
 		    mapLa.setBounds(1200, 400, 320, 340);
 		    add(mapLa);
 		} catch (Exception ex) {
 		    ex.printStackTrace();
 		}
+		
 		//pan.setBackground(Color.cyan);
-		pan.setLayout(new GridLayout(3,4,5,5));
-		pan.setBounds(30,15,1150,720);
-		add(pan);
+		
 		
 		b1=new JButton("이전");
 		b2=new JButton("다음");
@@ -76,11 +79,14 @@ public class HomeForm extends JPanel implements ActionListener,MouseListener {
 		table.getTableHeader().setReorderingAllowed(false);
     	table.getTableHeader().setResizingAllowed(false);
 		table.setRowHeight(35);
+		table.setShowVerticalLines(false);
 		
 		
 		DefaultTableCellRenderer centerRenderer = 
      			new DefaultTableCellRenderer();
      	centerRenderer.setHorizontalAlignment(SwingConstants.CENTER);
+     	table.getColumnModel().getColumn(1).
+        setCellRenderer(centerRenderer);
      	table.getColumnModel().getColumn(2).
      	                 setCellRenderer(centerRenderer);
      	table.getColumnModel().getColumn(3).
@@ -170,7 +176,7 @@ public class HomeForm extends JPanel implements ActionListener,MouseListener {
 	@Override
 	public void mouseClicked(MouseEvent e) {
 		// TODO Auto-generated method stub
-		System.out.println("asd");
+
 		for(int i=0;i<imgs.length;i++) {
 			if(e.getSource()==imgs[i]) {
 				String s=imgs[i].getToolTipText();

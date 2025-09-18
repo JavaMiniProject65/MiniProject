@@ -10,6 +10,7 @@ public class JoinForm extends JFrame {
 
 	JRadioButton rb1,rb2;
 	JButton b1,b2,b3,b4,b5;
+	
 	public JoinForm()
 	{
 		setLayout(null);

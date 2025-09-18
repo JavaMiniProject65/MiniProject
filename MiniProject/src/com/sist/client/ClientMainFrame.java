@@ -1,65 +1,60 @@
 package com.sist.client;
 import javax.swing.*;
 
+import com.sist.commons.ImageChange;
 import com.sist.dao.MemberDAO;
 import com.sist.vo.MemberVO;
 import com.sist.vo.ZipcodeVO;
 import java.util.List;
 import java.awt.*; // 배치 => 레이아웃
 import java.awt.event.*; // 이벤트 처리
+import java.net.URL;
 public class ClientMainFrame extends JFrame implements ActionListener {
 	
 	MenuForm menu=new MenuForm();
 	ControllerPanel cp=new ControllerPanel();
 	LoginForm login=new LoginForm();
 	JoinForm join=new JoinForm();
+	
 	FoodDetail fd=new FoodDetail(cp);
 
 	PostFind post=new PostFind();
 	IdCheck ic=new IdCheck();
 
-	
-
-	JMenuItem a;
-	JMenuItem b;
-	JMenuItem c;
-	JMenuItem d;
-	JMenuItem e;
-	JMenuItem f;
 
 	// has-a => 포함 클래스
 	public ClientMainFrame() {
 		
-		JMenuBar bar=new JMenuBar();
-		JMenu menu1=new JMenu("개인"); 
-		a=new JMenuItem("김민석");
-		b=new JMenuItem("유재현");
-		c=new JMenuItem("윤준식");
-		d=new JMenuItem("배수연");
-		e=new JMenuItem("박성진");
-		f=new JMenuItem("이수현");
-		menu1.add(a);
-		menu1.add(b);
-		menu1.add(c);
-		menu1.add(d);
-		menu1.add(e);
-		menu1.add(f);
-		bar.add(menu1);
-		setJMenuBar(bar);
 		setLayout(null);
 		menu.setBounds(350, 25, 900, 70);
 		cp.setBounds(30, 120, 1550, 780);
 		add(menu);
 		add(cp);
 		setSize(1620, 960);
+		
+		try {
+		    URL url = getClass().getResource("/com/sist/client/logo3.png");
+		    if (url == null) {
+		        System.err.println("이미지를 찾을 수 없습니다.");
+		        return;
+		    }
+		    Image logoImg = ImageChange.getImage(new ImageIcon(url), 70, 70);
+		    JLabel lagoLa = new JLabel(new ImageIcon(logoImg));
+		    lagoLa.setBounds(150, 25, 70, 70);
+		    add(lagoLa);
+		} catch (Exception ex) {
+		    ex.printStackTrace();
+		}
 		//setVisible(true);
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		menu.b1.addActionListener(this);
 		menu.b2.addActionListener(this);
-		menu.b3.addActionListener(this);
-		menu.b4.addActionListener(this);
 		menu.b5.addActionListener(this);
 		menu.b6.addActionListener(this);
+
+		// ★ 추가: 회원가입 폼의 ID 입력칸을 처음엔 비활성화 + 편집 불가
+		join.tf1.setEnabled(false);     // 회색 + 포커스/입력 불가
+		join.tf1.setEditable(false);    // 혹시 활성화돼도 편집은 잠금
 		
 		login.b1.addActionListener(this); // 로그인
     	login.b2.addActionListener(this); // 회원가입
@@ -119,16 +114,6 @@ public class ClientMainFrame extends JFrame implements ActionListener {
 			cp.bDetail.resetPwdBtn();
 			cp.bf.print();
 			}
-		if(e.getSource()==menu.b3) {
-			cp.card.show(cp, "RF");
-			cp.bDetail.resetPwdBtn();
-			cp.bf.print();
-		}
-		if(e.getSource()==menu.b4) {
-			cp.card.show(cp, "CF");
-			cp.bDetail.resetPwdBtn();
-			cp.bf.print();
-		}
 		if(e.getSource()==menu.b5) {
 			cp.card.show(cp, "list");
 			cp.bDetail.resetPwdBtn();
@@ -241,9 +226,18 @@ public class ClientMainFrame extends JFrame implements ActionListener {
 		}
 		else if(e.getSource()==join.b3)
 		{
-			ic.tf.setText("");
-			ic.rla.setText("");
-			ic.setVisible(true);
+		    // ★ 추가: 중복확인 누르면 ID입력칸 초기화 + 잠금 유지
+		    join.tf1.setText("");
+		    join.tf1.setEnabled(false);
+		    join.tf1.setEditable(false);
+
+		    ic.tf.setText("");
+		    ic.rla.setText("");
+		    ic.setVisible(true);
+
+		    // ★ 추가: 다이얼로그의 텍스트필드에 즉시 커서 + 전체선택
+		    ic.tf.requestFocusInWindow();
+		    ic.tf.selectAll();
 		}
 		else if(e.getSource()==join.b4)
 		{
@@ -291,9 +285,17 @@ public class ClientMainFrame extends JFrame implements ActionListener {
 				// 결과
 				else if(e.getSource()==ic.ok)
 				{
-					String id=ic.tf.getText();
-					join.tf1.setText(id);
-					ic.setVisible(false);
+				    String id=ic.tf.getText();
+				    join.tf1.setText(id);
+				    join.tf1.setEnabled(true);      // 회색 해제
+				    join.tf1.setEditable(false);    // 편집은 금지(검증 후 변조 방지)
+
+				    // ★ 선택: 다음 입력 흐름 좋게 - 비밀번호 칸으로 포커스 넘기기
+				    if (join.pf != null) {
+				        join.pf.requestFocusInWindow();
+				    }
+
+				    ic.setVisible(false);
 				}
 				// 우편번호 검색
 				else if(e.getSource()==post.btn||e.getSource()==post.tf)

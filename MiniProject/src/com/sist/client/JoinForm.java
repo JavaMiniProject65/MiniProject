@@ -29,6 +29,7 @@ public class JoinForm extends JFrame implements ActionListener {
         tf2 = new JTextField(); // 이름
         tf3 = new JTextField(); // 우편번호
         tf4 = new JTextField(); // 주소
+        
         tf5 = new JTextField(); // 상세주소
         tf6 = new JTextField(); // 전화
 

@@ -1,12 +1,14 @@
 package com.sist.client;
 import javax.swing.*;
 
+import com.sist.commons.ImageChange;
 import com.sist.dao.MemberDAO;
 import com.sist.vo.MemberVO;
 import com.sist.vo.ZipcodeVO;
 import java.util.List;
 import java.awt.*; // 배치 => 레이아웃
 import java.awt.event.*; // 이벤트 처리
+import java.net.URL;
 public class ClientMainFrame extends JFrame implements ActionListener {
 	
 	MenuForm menu=new MenuForm();
@@ -18,45 +20,35 @@ public class ClientMainFrame extends JFrame implements ActionListener {
 
 	PostFind post=new PostFind();
 	IdCheck ic=new IdCheck();
-	
-	JMenuItem a;
-	JMenuItem b;
-	JMenuItem c;
-	JMenuItem d;
-	JMenuItem e;
-	JMenuItem f;
+
 
 	// has-a => 포함 클래스
 	public ClientMainFrame() {
 		
-		JMenuBar bar=new JMenuBar();
-		JMenu menu1=new JMenu("개인"); 
-		a=new JMenuItem("김민석");
-		b=new JMenuItem("유재현");
-		c=new JMenuItem("윤준식");
-		d=new JMenuItem("배수연");
-		e=new JMenuItem("박성진");
-		f=new JMenuItem("이수현");
-		menu1.add(a);
-		menu1.add(b);
-		menu1.add(c);
-		menu1.add(d);
-		menu1.add(e);
-		menu1.add(f);
-		bar.add(menu1);
-		setJMenuBar(bar);
 		setLayout(null);
 		menu.setBounds(350, 25, 900, 70);
 		cp.setBounds(30, 120, 1550, 780);
 		add(menu);
 		add(cp);
 		setSize(1620, 960);
+		
+		try {
+		    URL url = getClass().getResource("/com/sist/client/logo3.png");
+		    if (url == null) {
+		        System.err.println("이미지를 찾을 수 없습니다.");
+		        return;
+		    }
+		    Image logoImg = ImageChange.getImage(new ImageIcon(url), 70, 70);
+		    JLabel lagoLa = new JLabel(new ImageIcon(logoImg));
+		    lagoLa.setBounds(150, 25, 70, 70);
+		    add(lagoLa);
+		} catch (Exception ex) {
+		    ex.printStackTrace();
+		}
 		//setVisible(true);
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		menu.b1.addActionListener(this);
 		menu.b2.addActionListener(this);
-		menu.b3.addActionListener(this);
-		menu.b4.addActionListener(this);
 		menu.b5.addActionListener(this);
 		menu.b6.addActionListener(this);
 
@@ -122,16 +114,6 @@ public class ClientMainFrame extends JFrame implements ActionListener {
 			cp.bDetail.resetPwdBtn();
 			cp.bf.print();
 			}
-		if(e.getSource()==menu.b3) {
-			cp.card.show(cp, "RF");
-			cp.bDetail.resetPwdBtn();
-			cp.bf.print();
-		}
-		if(e.getSource()==menu.b4) {
-			cp.card.show(cp, "CF");
-			cp.bDetail.resetPwdBtn();
-			cp.bf.print();
-		}
 		if(e.getSource()==menu.b5) {
 			cp.card.show(cp, "list");
 			cp.bDetail.resetPwdBtn();

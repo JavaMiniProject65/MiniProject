@@ -161,6 +161,7 @@ public class ClientMainFrame extends JFrame implements ActionListener {
 				login.setVisible(false);
 				setVisible(true);
 				setTitle(vo.getName());
+				cp.myId=id;
 			}
 		}
 		if(e.getSource()==login.b2) // 회원가입 버튼

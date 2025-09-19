@@ -11,6 +11,7 @@ public class ControllerPanel extends JPanel {
 	FoodDetail fd;
 	BoardDetail bDetail;
 	BoardUpdate bUpdate;
+	String myId;
 	
 	ReservationForm rf=new ReservationForm();
 	ClientInfoForm cif=new ClientInfoForm();

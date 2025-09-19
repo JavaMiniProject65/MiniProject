@@ -11,8 +11,10 @@ public class ControllerPanel extends JPanel {
 	FoodDetail fd;
 	BoardDetail bDetail;
 	BoardUpdate bUpdate;
+	NaverNewsFind news;
 	String myId;
 	MyPageForm mf;
+	
 	
 	ReservationForm rf=new ReservationForm();
 	ClientInfoForm cif=new ClientInfoForm();
@@ -24,7 +26,9 @@ public class ControllerPanel extends JPanel {
 		bi=new BoardInsert(this);
 		ff=new FoodFind(this);
 		fd=new FoodDetail(this);
-		mf = new MyPageForm(this);	
+
+		news=new NaverNewsFind(this);
+		mf = new MyPageForm(this);			
 		bDetail = new BoardDetail(this);
 		bUpdate = new BoardUpdate(this);
 		
@@ -40,5 +44,6 @@ public class ControllerPanel extends JPanel {
 		add("MF",mf);
 		add("detail", bDetail);
 		add("update", bUpdate);
+		add("NEWS",news);
 	}
 }

@@ -51,6 +51,7 @@ public class ClientMainFrame extends JFrame implements ActionListener {
 		menu.b2.addActionListener(this);
 		menu.b4.addActionListener(this);
 		menu.b5.addActionListener(this);
+		menu.b6.addActionListener(this);	
 		menu.b7.addActionListener(this);
 
 		// ★ 추가: 회원가입 폼의 ID 입력칸을 처음엔 비활성화 + 편집 불가
@@ -124,6 +125,10 @@ public class ClientMainFrame extends JFrame implements ActionListener {
 			cp.card.show(cp, "list");
 			cp.bDetail.resetPwdBtn();
 			cp.bf.print();
+		}
+		if(e.getSource()==menu.b6) {
+			cp.card.show(cp, "NEWS");
+			cp.news.newsPrint("맛집");
 		}
 		if(e.getSource()==menu.b7) {
 			cp.card.show(cp, "MF");

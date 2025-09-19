@@ -9,6 +9,7 @@ public class MemberDAO {
    private final String URL="jdbc:oracle:thin:@211.238.142.22:1521:XE";
    private static MemberDAO dao;
    
+   private final int rowSize = 10;
    // 드라이버 등록 
    public MemberDAO()
    {
@@ -278,6 +279,71 @@ public class MemberDAO {
    }
    // 옵션 6. ID찾기 / 비밀번호 찾기  
    
+   /** 총 회원 수 */
+   public int memberRowCount() {
+       int count = 0;
+       try {
+           getConnection();
+           String sql = "SELECT COUNT(*) FROM project_member";
+           ps = conn.prepareStatement(sql);
+           ResultSet rs = ps.executeQuery();
+           if (rs.next()) count = rs.getInt(1);
+           rs.close();
+       } catch (Exception ex) {
+           ex.printStackTrace();
+       } finally {
+           disConnection();
+       }
+       return count;
+   }
+
+   /** 페이지당 10건 목록 (regdate DESC) */
+   public List<MemberVO> memberListData(int page) {
+       List<MemberVO> list = new ArrayList<>();
+       try {
+           getConnection();
+
+           String sql =
+               "SELECT id, pwd, name, sex, post, addr1, addr2, phone, regdate " +
+               "FROM ( " +
+               "  SELECT id, pwd, name, sex, post, addr1, addr2, phone, regdate, " +
+               "         ROW_NUMBER() OVER (ORDER BY regdate DESC) AS rnum " +
+               "  FROM project_member " +
+               ") " +
+               "WHERE rnum BETWEEN ? AND ?";
+
+           ps = conn.prepareStatement(sql);
+
+           int start = (page - 1) * rowSize + 1;
+           int end   = page * rowSize;
+
+           ps.setInt(1, start);
+           ps.setInt(2, end);
+
+           ResultSet rs = ps.executeQuery();
+           while (rs.next()) {
+               MemberVO vo = new MemberVO();
+               vo.setId(rs.getString("id"));
+               vo.setPwd(rs.getString("pwd"));      // 화면엔 보통 노출 안 함
+               vo.setName(rs.getString("name"));
+               vo.setSex(rs.getString("sex"));
+               vo.setPost(rs.getString("post"));
+               vo.setAddr1(rs.getString("addr1"));
+               vo.setAddr2(rs.getString("addr2"));
+               vo.setPhone(rs.getString("phone"));
+               vo.setRegdate(rs.getDate("regdate")); // java.util.Date
+
+               list.add(vo);
+           }
+           rs.close();
+       } catch (Exception ex) {
+           ex.printStackTrace();
+       } finally {
+           disConnection();
+       }
+       return list;
+   }
+
 }
 
 

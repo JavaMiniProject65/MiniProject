@@ -55,6 +55,11 @@ public class ClientMainFrame extends JFrame implements ActionListener {
 		menu.b7.addActionListener(this);
 		menu.b8.addActionListener(this);
 
+		
+		
+		
+		
+		
 		// ★ 추가: 회원가입 폼의 ID 입력칸을 처음엔 비활성화 + 편집 불가
 		join.tf1.setEnabled(false);     // 회색 + 포커스/입력 불가
 		join.tf1.setEditable(false);    // 혹시 활성화돼도 편집은 잠금

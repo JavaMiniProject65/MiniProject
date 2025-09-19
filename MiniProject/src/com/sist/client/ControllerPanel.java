@@ -28,7 +28,6 @@ public class ControllerPanel extends JPanel {
 		add("HF",hf);
 		add("CF",cf);
 		add("BF",bf);
-		add("RF",rf);
 		add("CIF",cif);
 		add("list",bf);
 		add("insert",bi);

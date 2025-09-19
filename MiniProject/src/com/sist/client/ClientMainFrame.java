@@ -49,8 +49,8 @@ public class ClientMainFrame extends JFrame implements ActionListener {
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		menu.b1.addActionListener(this);
 		menu.b2.addActionListener(this);
+		menu.b4.addActionListener(this);
 		menu.b5.addActionListener(this);
-		menu.b6.addActionListener(this);
 
 		// ★ 추가: 회원가입 폼의 ID 입력칸을 처음엔 비활성화 + 편집 불가
 		join.tf1.setEnabled(false);     // 회색 + 포커스/입력 불가
@@ -114,13 +114,13 @@ public class ClientMainFrame extends JFrame implements ActionListener {
 			cp.bDetail.resetPwdBtn();
 			cp.bf.print();
 			}
-		if(e.getSource()==menu.b5) {
-			cp.card.show(cp, "list");
+		if(e.getSource()==menu.b4) {
+			cp.card.show(cp, "CF");
 			cp.bDetail.resetPwdBtn();
 			cp.bf.print();
 		}
-		if(e.getSource()==menu.b6) {
-			cp.card.show(cp, "CIF");
+		if(e.getSource()==menu.b5) {
+			cp.card.show(cp, "list");
 			cp.bDetail.resetPwdBtn();
 			cp.bf.print();
 		}

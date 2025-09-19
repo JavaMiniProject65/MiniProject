@@ -49,6 +49,7 @@ public class ClientMainFrame extends JFrame implements ActionListener {
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		menu.b1.addActionListener(this);
 		menu.b2.addActionListener(this);
+		menu.b4.addActionListener(this);
 		menu.b5.addActionListener(this);
 		menu.b6.addActionListener(this);
 
@@ -114,15 +115,19 @@ public class ClientMainFrame extends JFrame implements ActionListener {
 			cp.bDetail.resetPwdBtn();
 			cp.bf.print();
 			}
+		if(e.getSource()==menu.b4) {
+			cp.card.show(cp, "CF");
+			cp.bDetail.resetPwdBtn();
+			cp.bf.print();
+		}
 		if(e.getSource()==menu.b5) {
 			cp.card.show(cp, "list");
 			cp.bDetail.resetPwdBtn();
 			cp.bf.print();
 		}
 		if(e.getSource()==menu.b6) {
-			cp.card.show(cp, "CIF");
-			cp.bDetail.resetPwdBtn();
-			cp.bf.print();
+			cp.card.show(cp, "NEWS");
+			cp.news.newsPrint("맛집");
 		}
 		if(e.getSource()==login.b1) // 로그인 버튼
 		{
@@ -161,6 +166,7 @@ public class ClientMainFrame extends JFrame implements ActionListener {
 				login.setVisible(false);
 				setVisible(true);
 				setTitle(vo.getName());
+				cp.myId=id;
 			}
 		}
 		if(e.getSource()==login.b2) // 회원가입 버튼

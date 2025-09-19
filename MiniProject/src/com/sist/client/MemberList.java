@@ -29,7 +29,7 @@ public class MemberList extends JPanel implements ActionListener {
         this.cp = cp;
         setLayout(null);
 
-        titleLabel = new JLabel("회원 목록", JLabel.CENTER);
+        titleLabel = new JLabel("사원 목록", JLabel.CENTER);
         titleLabel.setFont(new Font("맑은 고딕", Font.BOLD, 50));
         titleLabel.setBounds(140, 15, 1230, 60); // 우측 버튼 공간 확보
         add(titleLabel);
@@ -47,7 +47,7 @@ public class MemberList extends JPanel implements ActionListener {
         previousBtn = new JButton("이전");
         nextBtn = new JButton("다음");
 
-        String[] col = {"번호","아이디","이름","성별","우편번호","주소","상세주소","전화","가입일"};
+        String[] col = {"번호","사원아이디","사원이름","성별","부서번호","주소","상세주소","전화","입사일"};
         model = new DefaultTableModel(new String[0][col.length], col) {
             @Override public boolean isCellEditable(int r, int c) { return false; }
         };
